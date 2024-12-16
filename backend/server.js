@@ -1,16 +1,23 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import dotenv from "dotenv";
 dotenv.config();
-import productRoute from "./routes/product.routes.js";
+import productRoutes from "./routes/product.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import cookieParser from "cookie-parser";
+
 import connectDB from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 const app = express();
 
-app.get("/", () => {
-  console.log("App is running");
-});
+// body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/products", productRoute);
+// cookie parser middleware
+app.use(cookieParser());
+
+app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
