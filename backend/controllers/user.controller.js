@@ -8,6 +8,7 @@ import generateToken from "../utils/generateToken.js";
 // @access Public
 
 const authUser = asyncHandler(async (req, res) => {
+  console.log("inside auth controller");
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   console.log(password);
@@ -148,14 +149,4 @@ const updateUser = asyncHandler(async (req, res) => {
   res.send("update user");
 });
 
-export {
-  authUser,
-  registerUser,
-  logoutUser,
-  getUserProfile,
-  updateUserProfile,
-  getUsers,
-  deleterUser,
-  getUserById,
-  updateUser,
-};
+export { authUser, registerUser, logoutUser, getUserProfile, updateUserProfile, getUsers, deleterUser, getUserById, updateUser };

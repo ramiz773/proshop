@@ -1,3 +1,4 @@
+import { PayPalScriptProvider, PaypPalScriptProvider } from "@paypal/react-paypal-js";
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import "bootstrap/dist/css/bootstrap.css";
@@ -52,12 +53,14 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider
-        router={router}
-        future={{
-          v7_startTransition: true,
-        }}
-      />
+      <PayPalScriptProvider deferLoading={true}>
+        <RouterProvider
+          router={router}
+          future={{
+            v7_startTransition: true,
+          }}
+        />
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>
 );
